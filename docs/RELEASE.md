@@ -10,7 +10,7 @@
 - [x] Synthetic-data dashboard screenshot captured without the account email.
 - [x] Approved QA sample deleted; a fresh browser session and database query confirmed no QA records remain.
 - [x] Logout cleared the session and the workspace remained signed out after reload.
-- [ ] Source published to GitHub and CI confirmed there.
-- [ ] Intended audience verified on the deployed website.
+- [x] Source published to https://github.com/Rush199/CareerLog; GitHub's Checks / test (push) passed.
+- [x] Existing owner-only deployed access verified. Public visitor access has not been enabled.
 
 The hosted copy currently has owner-only Sites access. Publishing code on GitHub does not change it. Auth email delivery and redirect allowlists are account configuration. Configure SMTP before external registration; keep email confirmation enabled.
