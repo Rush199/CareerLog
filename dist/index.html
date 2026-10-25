@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Careerlog — a calmer place to manage your job search." />
+    <title>Careerlog — Your next chapter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside>
+        <a class="brand" href="./"><span class="logo">c.</span> careerlog</a>
+        <div class="sidebar-label">YOUR WORKSPACE</div>
+        <div class="nav active">▦ &nbsp; Applications</div>
+        <div class="side-note">
+          <span class="spark">✳</span>
+          <h3>One step closer.</h3>
+          <p>Every application is a new possibility. Keep moving forward.</p>
+        </div>
+        <div class="sidebar-footer">Made for your next chapter.</div>
+      </aside>
+      <main>
+        <header>
+          <span>Workspace <span class="slash">/</span> Applications</span>
+          <div id="account"><span class="avatar">C</span></div>
+        </header>
+        <div class="content">
+          <div class="heading">
+            <div>
+              <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</div>
+              <h1>Your job search, organized.</h1>
+              <p>A little clarity for your next big move.</p>
+            </div>
+            <button id="add" class="primary" hidden>＋ Add application</button>
+          </div>
+          <p id="message" role="status" aria-live="polite"></p>
+          <section id="auth" class="auth-layout">
+            <div class="auth-card">
+              <span class="pill">A SPACE OF YOUR OWN</span>
+              <h2 id="auth-title">Welcome back.</h2>
+              <p id="auth-copy">Sign in to pick up where you left off.</p>
+              <form id="auth-form">
+                <label
+                  >Email address<input
+                    id="email"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="you@example.com"
+                    required /></label
+                ><label
+                  >Password<input
+                    id="password"
+                    type="password"
+                    autocomplete="current-password"
+                    minlength="8"
+                    required
+                    placeholder="At least 8 characters" /></label
+                ><button class="primary full" id="auth-submit">Sign in</button>
+              </form>
+              <button id="auth-toggle" class="text-button">New here? Create an account</button
+              ><button id="forgot" class="text-button">Forgot your password?</button>
+            </div>
+            <div class="welcome-art">
+              <div class="orbit"></div>
+              <span class="art-star">✳</span>
+              <div class="floating-card">
+                <span class="tiny-label">THE BIG PICTURE</span>
+                <h2>Less juggling.<br />More possibility.</h2>
+                <p>
+                  Applications, conversations, and next steps.<br />All together in one thoughtful
+                  workspace.
+                </p>
+                <div class="steps">
+                  <span>Apply</span><i>→</i><span>Interview</span><i>→</i
+                  ><span class="green">Offer</span>
+                </div>
+              </div>
+              <span class="art-caption">Small steps. Meaningful progress.</span>
+            </div>
+          </section>
+          <section id="workspace" hidden>
+            <div class="stats" id="stats"></div>
+            <section class="board">
+              <div class="board-title">
+                <div>
+                  <h2>Application workspace</h2>
+                  <p>Keep every opportunity in sight.</p>
+                </div>
+                <div class="board-actions">
+                  <span id="count" class="pill"></span
+                  ><button type="button" id="reload" class="secondary">Refresh</button>
+                </div>
+              </div>
+              <div class="toolbar">
+                <input
+                  id="search"
+                  type="search"
+                  aria-label="Search applications"
+                  placeholder="Search company or role…"
+                /><select id="filter" aria-label="Filter by status">
+                  <option value="">All statuses</option>
+                  <option>Applied</option>
+                  <option>Interview</option>
+                  <option>Offer</option>
+                  <option>Rejected</option></select
+                ><label class="check-label"
+                  ><input type="checkbox" id="due-only" />Follow-ups due</label
+                >
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>COMPANY & ROLE</th>
+                      <th>STATUS</th>
+                      <th>APPLIED</th>
+                      <th>FOLLOW-UP</th>
+                      <th><span class="sr-only">Actions</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="rows"></tbody>
+                </table>
+              </div>
+              <div id="empty" class="empty">
+                <span>↗</span>
+                <h3>Your next opportunity starts here.</h3>
+                <p>Add your first application and give your search a little structure.</p>
+              </div>
+            </section>
+            <p class="footnote">Your applications are private to your account.</p>
+          </section>
+        </div>
+      </main>
+    </div>
+    <dialog id="editor">
+      <form id="application-form">
+        <div class="modal-heading">
+          <h2 id="editor-title">New application</h2>
+          <button type="button" id="close" aria-label="Close dialog">×</button>
+        </div>
+        <input name="id" type="hidden" /><label
+          >Company<input name="company" maxlength="120" required placeholder="e.g. Acme" /></label
+        ><label
+          >Role<input name="role" maxlength="160" required placeholder="e.g. Frontend Developer"
+        /></label>
+        <div class="form-grid">
+          <label
+            >Status<select name="status">
+              <option>Applied</option>
+              <option>Interview</option>
+              <option>Offer</option>
+              <option>Rejected</option>
+            </select></label
+          ><label>Applied on<input name="applied_on" type="date" required /></label>
+        </div>
+        <label>Follow-up date<input name="follow_up" type="date" /></label>
+        <p class="field-hint">Use Done in the application list to clear a completed follow-up.</p>
+        <label
+          >Notes<textarea
+            name="notes"
+            maxlength="4000"
+            rows="4"
+            placeholder="People, interview details, next steps…"
+          ></textarea></label
+        ><button class="primary full" id="save">Save application</button>
+        <p id="form-error" role="alert"></p>
+      </form>
+    </dialog>
+    <script type="module" src="bootstrap.js"></script>
+  </body>
+</html>
